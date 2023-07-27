@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { View } from 'react-native';
 
-import ViewPager from '@react-native-community/viewpager';
+// import ViewPager from '@react-native-community/viewpager';
+import PagerView from 'react-native-pager-view';
 
 import server from '../../../server.json';
 import Feed from './Feed';
@@ -22,7 +23,7 @@ const Home: React.FC = () => {
           <Text active={tab === 2}>For You</Text>
         </Tab>
       </Header>
-      <ViewPager
+      <PagerView
         onPageSelected={e => {
           setActive(e.nativeEvent.position);
         }}
@@ -35,7 +36,7 @@ const Home: React.FC = () => {
             <Feed item={item} play={Number(item.id) === active} />
           </View>
         ))}
-      </ViewPager>
+      </PagerView>
     </Container>
   );
 };
