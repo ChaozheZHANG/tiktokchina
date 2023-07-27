@@ -21,7 +21,13 @@ const ShoppingWindow: React.FC<{ product: Product }> = ({ product }) => {
 
   return (
     <View>
-      <Image source={{ uri: product.image }} />
+      <Image
+        style={{
+          width: 150,
+          height: 100,
+        }}
+        source={{ uri: product.image }}
+      />
       <Text>{product.name}</Text>
       <Text>{product.price}</Text>
       <Button title="Buy" onPress={handleBuy} />

@@ -47,48 +47,48 @@ const Shopping: React.FC = () => {
         data={[
           {
             name: 'Example product',
-            price: '99.99',
-            image: 'https://example.com/product.jpg',
+            price: '79.99',
+            image: 'https://fakeimg.pl/600x400',
           },
           {
             name: 'Example product',
             price: '99.99',
-            image: 'https://example.com/product.jpg',
+            image: 'https://fakeimg.pl/600x400',
           },
           {
             name: 'Example product',
             price: '99.99',
-            image: 'https://example.com/product.jpg',
+            image: 'https://fakeimg.pl/600x400',
           },
           {
             name: 'Example product',
             price: '99.99',
-            image: 'https://example.com/product.jpg',
+            image: 'https://fakeimg.pl/600x400',
           },
           {
             name: 'Example product',
             price: '99.99',
-            image: 'https://example.com/product.jpg',
+            image: 'https://fakeimg.pl/600x400',
           },
           {
             name: 'Example product',
             price: '99.99',
-            image: 'https://example.com/product.jpg',
+            image: 'https://fakeimg.pl/600x400',
           },
           {
             name: 'Example product',
             price: '99.99',
-            image: 'https://example.com/product.jpg',
+            image: 'https://fakeimg.pl/600x400',
           },
           {
             name: 'Example product',
             price: '99.99',
-            image: 'https://example.com/product.jpg',
+            image: 'https://fakeimg.pl/600x400',
           },
           {
             name: 'Example product',
             price: '99.99',
-            image: 'https://example.com/product.jpg',
+            image: 'https://fakeimg.pl/600x400',
           },
         ]}
         renderItem={({ item }) => <ShoppingWindow product={item} />}
