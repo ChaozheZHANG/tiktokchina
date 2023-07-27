@@ -16,6 +16,11 @@ import Inbox from '../pages/Inbox';
 import Me from '../pages/Me';
 import Record from '../pages/Record';
 import Shopping from '../pages/Shopping';
+import Think from '../pages/Think';
+import ShoppingCart from '../pages/ShoppingCart';
+import CountDown from '../pages/CountDown';
+import ProductDetail from '../pages/ProductDetail';
+import Purchase from '../pages/Purchase';
 
 const Tab = createMaterialBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -71,6 +76,20 @@ const AppRoutes: React.FC = () => {
         }}
       />
       <Tab.Screen
+        name="Inbox"
+        component={Inbox}
+        options={{
+          tabBarLabel: 'Inbox',
+          tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons
+              name="message-text-outline"
+              size={24}
+              color={color}
+            />
+          ),
+        }}
+      />
+      <Tab.Screen
         name="Live"
         component={Record}
         listeners={({ navigation }) => ({
@@ -88,20 +107,6 @@ const AppRoutes: React.FC = () => {
         }}
       />
       <Tab.Screen
-        name="Inbox"
-        component={Inbox}
-        options={{
-          tabBarLabel: 'Inbox',
-          tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons
-              name="message-text-outline"
-              size={24}
-              color={color}
-            />
-          ),
-        }}
-      />
-      <Tab.Screen
         name="Me"
         component={Me}
         options={{
@@ -116,6 +121,16 @@ const AppRoutes: React.FC = () => {
         component={Shopping}
         options={{
           tabBarLabel: 'Shopping',
+          tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons name="shopping" size={24} color={color} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="ShoppingCart"
+        component={ShoppingCart}
+        options={{
+          tabBarLabel: 'Cart',
           tabBarIcon: ({ color }) => (
             <AntDesign name="shoppingcart" size={24} color={color} />
           ),
@@ -137,6 +152,31 @@ const RootStackScreen: React.FC = () => {
         options={{ headerShown: false }}
         name="Record"
         component={Record}
+      />
+      <Stack.Screen
+        options={{ headerShown: false }}
+        name="Think"
+        component={Think}
+      />
+      <Stack.Screen
+        options={{ headerShown: false }}
+        name="ShoppingCart"
+        component={ShoppingCart}
+      />
+      <Stack.Screen
+        options={{ headerShown: false }}
+        name="CountDown"
+        component={CountDown}
+      />
+      <Stack.Screen
+        options={{ headerShown: false }}
+        name="ProductDetail"
+        component={ProductDetail}
+      />
+      <Stack.Screen
+        options={{ headerShown: false }}
+        name="Purchase"
+        component={Purchase}
       />
     </Stack.Navigator>
   );

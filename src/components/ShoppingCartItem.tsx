@@ -1,23 +1,14 @@
 // ShoppingWindow.tsx
 import React from 'react';
 import { View, Image, Text, Button } from 'react-native';
-import { Product, useShoppingCartStore } from '../stores';
+import { Product } from '../stores';
 
-const ShoppingWindow: React.FC<{ product: Product; navigation: any }> = ({
-  product,
-  navigation,
-}) => {
+const ShoppingCartItem: React.FC<{ product: Product }> = ({ product }) => {
   // const product: Product = {
   //   name: 'Example product',
   //   price: '99.99',
   //   image: 'https://example.com/product.jpg',
   // };
-  const { addProduct } = useShoppingCartStore();
-
-  const handleBuy = () => {
-    console.log('Buy button clicked');
-    navigation.navigate('ProductDetail', { product });
-  };
 
   return (
     <View>
@@ -30,9 +21,8 @@ const ShoppingWindow: React.FC<{ product: Product; navigation: any }> = ({
       />
       <Text>{product.name}</Text>
       <Text>{product.price}</Text>
-      <Button title="Buy" onPress={handleBuy} />
     </View>
   );
 };
 
-export default ShoppingWindow;
+export default ShoppingCartItem;

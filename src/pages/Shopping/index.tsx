@@ -24,7 +24,7 @@ import {
 } from './styles';
 import ShoppingWindow from '../../components/ShoppingWindow';
 
-const Shopping: React.FC = () => {
+const Shopping: React.FC = ({ navigation }) => {
   return (
     <Container>
       <Header>
@@ -46,52 +46,65 @@ const Shopping: React.FC = () => {
       <FlatList
         data={[
           {
+            id: '1',
             name: 'Example product',
             price: '79.99',
             image: 'https://fakeimg.pl/600x400',
+            description:
+              'This is a description of this product. It is very good. You should buy it.',
           },
           {
+            id: '2',
+            name: 'Example product',
+            price: '89.99',
+            image: 'https://fakeimg.pl/600x400',
+          },
+          {
+            id: '3',
             name: 'Example product',
             price: '99.99',
             image: 'https://fakeimg.pl/600x400',
           },
           {
+            id: '4',
             name: 'Example product',
             price: '99.99',
             image: 'https://fakeimg.pl/600x400',
           },
           {
+            id: '5',
             name: 'Example product',
             price: '99.99',
             image: 'https://fakeimg.pl/600x400',
           },
           {
+            id: '6',
             name: 'Example product',
             price: '99.99',
             image: 'https://fakeimg.pl/600x400',
           },
           {
+            id: '7',
             name: 'Example product',
             price: '99.99',
             image: 'https://fakeimg.pl/600x400',
           },
           {
+            id: '8',
             name: 'Example product',
             price: '99.99',
             image: 'https://fakeimg.pl/600x400',
           },
           {
-            name: 'Example product',
-            price: '99.99',
-            image: 'https://fakeimg.pl/600x400',
-          },
-          {
+            id: '9',
             name: 'Example product',
             price: '99.99',
             image: 'https://fakeimg.pl/600x400',
           },
         ]}
-        renderItem={({ item }) => <ShoppingWindow product={item} />}
+        renderItem={({ item }) => (
+          <ShoppingWindow product={item} navigation={navigation} />
+        )}
       />
     </Container>
   );
