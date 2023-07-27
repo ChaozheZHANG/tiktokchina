@@ -15,6 +15,7 @@ import Home from '../pages/Home';
 import Inbox from '../pages/Inbox';
 import Me from '../pages/Me';
 import Record from '../pages/Record';
+import Shopping from '../pages/Shopping';
 
 const Tab = createMaterialBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -107,6 +108,16 @@ const AppRoutes: React.FC = () => {
           tabBarLabel: 'Me',
           tabBarIcon: ({ color }) => (
             <AntDesign name="user" size={24} color={color} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Shopping"
+        component={Shopping}
+        options={{
+          tabBarLabel: 'Shopping',
+          tabBarIcon: ({ color }) => (
+            <AntDesign name="shoppingcart" size={24} color={color} />
           ),
         }}
       />

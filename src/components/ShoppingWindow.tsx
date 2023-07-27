@@ -1,5 +1,6 @@
 // ShoppingWindow.tsx
 import React from 'react';
+import { View, Image, Text, Button } from 'react-native';
 
 interface Product {
   name: string;
@@ -7,29 +8,25 @@ interface Product {
   image: string;
 }
 
-const ShoppingWindow: React.FC = () => {
-  const product: Product = {
-    name: 'Example product',
-    price: '99.99',
-    image: 'https://example.com/product.jpg'
-  };
+const ShoppingWindow: React.FC<{ product: Product }> = ({ product }) => {
+  // const product: Product = {
+  //   name: 'Example product',
+  //   price: '99.99',
+  //   image: 'https://example.com/product.jpg',
+  // };
 
   const handleBuy = () => {
     console.log('Buy button clicked');
   };
 
   return (
-    <div className="shopping-window">
-      <img src={product.image} alt={product.name} />
-      <h2>{product.name}</h2>
-      <p>{product.price}</p>
-      <button onClick={handleBuy}>Buy</button>
-    </div>
+    <View>
+      <Image source={{ uri: product.image }} />
+      <Text>{product.name}</Text>
+      <Text>{product.price}</Text>
+      <Button title="Buy" onPress={handleBuy} />
+    </View>
   );
-}
+};
 
 export default ShoppingWindow;
-
-
-
-
