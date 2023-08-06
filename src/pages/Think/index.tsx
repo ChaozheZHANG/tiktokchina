@@ -25,7 +25,8 @@ import {
 
 interface ThinkPageProps {
   title: string;
-  content: string;
+  content: JSX.Element;
+  callback?: () => void;
   next: string;
 }
 
@@ -56,15 +57,23 @@ const Think: React.FC<{
         /> */}
       </Header>
       <View>
-        <Text>{contents[currentLevel].content}</Text>
+        {contents[currentLevel].content}
+        <Button
+          title="Back"
+          onPress={() => {
+            navigation.goBack();
+          }}
+        />
         <Button
           title="Continue"
-          onPress={() =>
+          onPress={() => {
+            if (contents[currentLevel].callback)
+              contents[currentLevel].callback!();
             navigation.navigate(contents[currentLevel].next, {
               contents: contents,
               currentLevel: currentLevel + 1,
-            })
-          }
+            });
+          }}
         />
       </View>
     </Container>

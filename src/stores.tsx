@@ -3,7 +3,7 @@ import { create } from 'zustand';
 export interface Product {
   id: string;
   name: string;
-  price: string;
+  price: number;
   description?: string;
   image: string;
 }
@@ -28,5 +28,35 @@ export const useShoppingCartStore = create<ShoppingCartStore>(set => ({
   clearCart: () =>
     set(state => ({
       products: [],
+    })),
+}));
+
+interface WalletStore {
+  actualBalance: number;
+  virtualBalance: number;
+  addMoney: (amount: number) => void;
+  removeMoney: (amount: number) => void;
+  applyPurchase: () => void;
+  revertPurchase: () => void;
+}
+
+export const useWalletStore = create<WalletStore>(set => ({
+  actualBalance: 2000,
+  virtualBalance: 2000,
+  addMoney: amount =>
+    set(state => ({
+      virtualBalance: state.virtualBalance + amount,
+    })),
+  removeMoney: amount =>
+    set(state => ({
+      virtualBalance: state.virtualBalance - amount,
+    })),
+  applyPurchase: () =>
+    set(state => ({
+      actualBalance: state.virtualBalance,
+    })),
+  revertPurchase: () =>
+    set(state => ({
+      virtualBalance: state.actualBalance,
     })),
 }));

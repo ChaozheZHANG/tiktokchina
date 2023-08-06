@@ -24,12 +24,13 @@ import {
 } from './styles';
 import ShoppingWindow from '../../components/ShoppingWindow';
 import ShoppingCartItem from '../../components/ShoppingCartItem';
-import { useShoppingCartStore } from '../../stores';
-import MoneyBagVisualization from '../../components/MoneyBagVisualization';
+import { Product, useShoppingCartStore, useWalletStore } from '../../stores';
+import WalletVisualization from '../../components/WalletVisualization';
 
 const ProductDetail: React.FC = ({ route, navigation }) => {
-  const { product } = route.params;
+  const { product } = route.params as { product: Product };
   const { addProduct } = useShoppingCartStore();
+  const { virtualBalance, removeMoney } = useWalletStore();
 
   function addProductToShoppingCart(): void {
     addProduct(product);
@@ -37,13 +38,18 @@ const ProductDetail: React.FC = ({ route, navigation }) => {
       contents: [
         {
           title: 'Think',
-          content: 'Think about the product',
+          content: (
+            <WalletVisualization balance={virtualBalance - product.price} />
+          ),
           next: 'Think',
         },
         {
           title: 'Think twice',
-          content: 'Think about the product',
-          next: 'ShoppingCart',
+          content: <Text>Think about the product</Text>,
+          callback: () => {
+            removeMoney(product.price);
+          },
+          next: 'Main',
         },
       ],
       currentLevel: 0,
@@ -80,7 +86,7 @@ const ProductDetail: React.FC = ({ route, navigation }) => {
       <Text>
         {product.description ?? 'No detailed description for this product.'}
       </Text>
-      <MoneyBagVisualization />
+      <WalletVisualization />
       <Button title="Add to Shopping Cart" onPress={addProductToShoppingCart} />
     </Container>
   );

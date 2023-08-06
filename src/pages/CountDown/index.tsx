@@ -22,9 +22,10 @@ import {
   ProfileText,
   Bookmark,
 } from './styles';
+import { useWalletStore } from '../../stores';
 
 const CountDown: React.FC = ({ navigation }) => {
-  const [time, setTime] = React.useState(10);
+  const [time, setTime] = React.useState(3);
 
   React.useEffect(() => {
     const interval = setInterval(() => {
@@ -32,7 +33,6 @@ const CountDown: React.FC = ({ navigation }) => {
     }, 1000);
     return () => {
       console.log('countdown unmounted');
-
       clearInterval(interval);
     };
   }, []);
@@ -48,7 +48,8 @@ const CountDown: React.FC = ({ navigation }) => {
   function second2mmss(second: number): string {
     const min = Math.floor(second / 60);
     const sec = second % 60;
-    return `${min}:${sec}`;
+    // in a format of mm:ss
+    return `${min < 10 ? '0' : ''}${min}:${sec < 10 ? '0' : ''}${sec}`;
   }
 
   return (

@@ -22,8 +22,11 @@ import {
   ProfileText,
   Bookmark,
 } from './styles';
+import { useWalletStore } from '../../stores';
 
 const Me: React.FC = () => {
+  const { actualBalance } = useWalletStore();
+
   return (
     <Container>
       <Header>
@@ -60,6 +63,11 @@ const Me: React.FC = () => {
             <StatsColumn>
               <StatsNumber>950</StatsNumber>
               <StatsText>Likes</StatsText>
+            </StatsColumn>
+            <Separator>|</Separator>
+            <StatsColumn>
+              <StatsNumber>${actualBalance}</StatsNumber>
+              <StatsText>Balance</StatsText>
             </StatsColumn>
           </Stats>
           <ProfileColumn>

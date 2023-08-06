@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Button, FlatList, ScrollView, Text, View } from 'react-native';
 
 import { MaterialIcons, AntDesign, FontAwesome } from '@expo/vector-icons';
@@ -23,8 +23,17 @@ import {
   Bookmark,
 } from './styles';
 import ShoppingWindow from '../../components/ShoppingWindow';
+import { useShoppingCartStore, useWalletStore } from '../../stores';
 
 const Purchase: React.FC = ({ navigation }) => {
+  const { actualBalance, applyPurchase } = useWalletStore();
+  const { clearCart } = useShoppingCartStore();
+
+  useEffect(() => {
+    applyPurchase();
+    clearCart();
+  }, []);
+
   return (
     <Container>
       <Header>
@@ -44,7 +53,9 @@ const Purchase: React.FC = ({ navigation }) => {
         /> */}
       </Header>
       <View>
-        <Text>Thank you for your purchase!</Text>
+        <Text>
+          Thank you for your purchase! You now have ${actualBalance} left.
+        </Text>
         <Button
           title="Back to the Main Page"
           onPress={() => navigation.navigate('Main')}

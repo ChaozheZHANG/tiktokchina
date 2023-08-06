@@ -48,7 +48,7 @@ const ShoppingCart: React.FC = ({ navigation }) => {
         /> */}
       </Header>
 
-      {products.length>0 ? (
+      {products.length > 0 ? (
         <>
           <FlatList
             data={products}

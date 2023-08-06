@@ -48,7 +48,7 @@ const Shopping: React.FC = ({ navigation }) => {
           {
             id: '1',
             name: 'Example product',
-            price: '79.99',
+            price: 1000,
             image: 'https://fakeimg.pl/600x400',
             description:
               'This is a description of this product. It is very good. You should buy it.',
@@ -56,49 +56,49 @@ const Shopping: React.FC = ({ navigation }) => {
           {
             id: '2',
             name: 'Example product',
-            price: '89.99',
+            price: 89.99,
             image: 'https://fakeimg.pl/600x400',
           },
           {
             id: '3',
             name: 'Example product',
-            price: '99.99',
+            price: 99.99,
             image: 'https://fakeimg.pl/600x400',
           },
           {
             id: '4',
             name: 'Example product',
-            price: '99.99',
+            price: 79.99,
             image: 'https://fakeimg.pl/600x400',
           },
           {
             id: '5',
             name: 'Example product',
-            price: '99.99',
+            price: 99.99,
             image: 'https://fakeimg.pl/600x400',
           },
           {
             id: '6',
             name: 'Example product',
-            price: '99.99',
+            price: 99.99,
             image: 'https://fakeimg.pl/600x400',
           },
           {
             id: '7',
             name: 'Example product',
-            price: '99.99',
+            price: 99.99,
             image: 'https://fakeimg.pl/600x400',
           },
           {
             id: '8',
             name: 'Example product',
-            price: '99.99',
+            price: 99.99,
             image: 'https://fakeimg.pl/600x400',
           },
           {
             id: '9',
             name: 'Example product',
-            price: '99.99',
+            price: 99.99,
             image: 'https://fakeimg.pl/600x400',
           },
         ]}
