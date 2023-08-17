@@ -19,7 +19,7 @@ const WalletVisualization: React.FC = ({ balance }: { balance?: number }) => {
           }}
           source={{
             uri:
-              'https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png',
+              'https://outin-4c183069335e11eeb6c100163e024c6a.oss-cn-shanghai.aliyuncs.com/image/default/3646A8CF15D6497AA6829A6FC2626AC3-6-2.png?Expires=1691363607&OSSAccessKeyId=LTAIxSaOfEzCnBOj&Signature=3GRuvXD%2Fg0cSXw6rf5Lqb3dj2Qs%3D',
           }}
         />,
       );
@@ -30,9 +30,9 @@ const WalletVisualization: React.FC = ({ balance }: { balance?: number }) => {
   return (
     <View
       style={{
-        height: 300,
+        height: 215,
         backgroundColor: 'yellow',
-        padding: 10,
+        padding: 20,
       }}
     >
       <Text>This is the part for visualization</Text>

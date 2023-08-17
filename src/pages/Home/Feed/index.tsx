@@ -89,6 +89,15 @@ const Feed: React.FC<Props> = ({ play, item }) => {
       </Details>
       <Actions>
         <BoxAction>
+          <FontAwesome
+            style={{ alignSelf: 'center' }}
+            name="shopping-cart"
+            size={35}
+            color="#fff"
+          />
+          <TextAction>Shop</TextAction>
+        </BoxAction>
+        <BoxAction>
           <AntDesign
             style={{ alignSelf: 'center' }}
             name="heart"
@@ -107,15 +116,6 @@ const Feed: React.FC<Props> = ({ play, item }) => {
           <TextAction>{item.comments}</TextAction>
         </BoxAction>
         <BoxAction>
-          <FontAwesome
-            style={{ alignSelf: 'center' }}
-            name="whatsapp"
-            size={35}
-            color="#06d755"
-          />
-          <TextAction>Share</TextAction>
-        </BoxAction>
-        <BoxAction>
           <Animated.View>
             <Image
               style={{
@@ -124,7 +124,7 @@ const Feed: React.FC<Props> = ({ play, item }) => {
                 borderRadius: 25,
               }}
               source={{
-                uri: 'https://avatars3.githubusercontent.com/u/45601574',
+                uri: 'https://img1.baidu.com/it/u=2787072759,2468608291&fm=253&fmt=auto&app=138&f=JPEG?w=667&h=500',
               }}
             />
           </Animated.View>

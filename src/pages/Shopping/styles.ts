@@ -1,5 +1,4 @@
 import { getStatusBarHeight } from 'react-native-status-bar-height';
-
 import { Feather } from '@expo/vector-icons';
 import styled from 'styled-components/native';
 
@@ -20,8 +19,9 @@ export const Header = styled.View`
 `;
 
 export const Title = styled.Text`
-  font-size: 18px;
+  font-size: 24px;
   font-weight: bold;
+  color: #000000;
 `;
 
 export const Content = styled.View`
@@ -31,8 +31,8 @@ export const Content = styled.View`
 
 export const Avatar = styled.Image`
   align-self: center;
-  width: 120px;
-  height: 140px;
+  width: 150px;
+  height: 170px;
 `;
 
 export const Username = styled.Text`
@@ -50,10 +50,11 @@ export const StatsColumn = styled.View`
   align-items: center;
 `;
 
-export const StatsNumber = styled.Text`
-  font-size: 18px;
+export const StatsNumber = styled.Text<{ color?: string }>`
+  font-size: 20px;
   padding: 10px;
   font-weight: bold;
+  color: ${props => props.color || '#000'};
 `;
 
 export const Separator = styled.Text`
@@ -78,7 +79,7 @@ export const ProfileText = styled.Text`
   font-weight: bold;
 `;
 
-export const ProfileEdit = styled.TouchableOpacity.attrs({
+export const ProfileEdit = styled.TouchableOpacity.attrs<{ pressed?: boolean }>({
   activityOpacity: 1,
 })`
   border-width: 1.5px;
@@ -86,12 +87,15 @@ export const ProfileEdit = styled.TouchableOpacity.attrs({
   border-color: #e6e6e6;
   border-radius: 2px;
   font-size: 12px;
+  transform: scale(${props => props.pressed ? 0.95 : 1});
 `;
 
-export const Bookmark = styled(Feather)`
+export const Bookmark = styled(Feather)<{ rotated?: boolean }>`
   border-width: 1.5px;
   padding: 5px;
   margin-left: 5px;
   border-color: #e6e6e6;
   border-radius: 2px;
+  transform: rotate(${props => props.rotated ? '45deg' : '0'});
 `;
+

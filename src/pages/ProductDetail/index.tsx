@@ -76,8 +76,8 @@ const ProductDetail: React.FC = ({ route, navigation }) => {
       </Header>
       <Image
         style={{
-          width: 150,
-          height: 100,
+          width: 400,
+          height: 400,
         }}
         source={{ uri: product.image }}
       />

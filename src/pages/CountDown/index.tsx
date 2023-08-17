@@ -25,7 +25,7 @@ import {
 import { useWalletStore } from '../../stores';
 
 const CountDown: React.FC = ({ navigation }) => {
-  const [time, setTime] = React.useState(3);
+  const [time, setTime] = React.useState(6);
 
   React.useEffect(() => {
     const interval = setInterval(() => {

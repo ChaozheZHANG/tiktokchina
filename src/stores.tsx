@@ -41,8 +41,8 @@ interface WalletStore {
 }
 
 export const useWalletStore = create<WalletStore>(set => ({
-  actualBalance: 2000,
-  virtualBalance: 2000,
+  actualBalance: 3000,
+  virtualBalance: 3000,
   addMoney: amount =>
     set(state => ({
       virtualBalance: state.virtualBalance + amount,
