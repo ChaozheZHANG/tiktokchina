@@ -24,16 +24,31 @@ import {
 } from './styles';
 import ShoppingWindow from '../../components/ShoppingWindow';
 import ShoppingCartItem from '../../components/ShoppingCartItem';
-import { Product, useShoppingCartStore, useWalletStore } from '../../stores';
+import {
+  Product,
+  useShoppingCartStore,
+  useUserEventLogStore,
+  useUserStore,
+  useWalletStore,
+} from '../../stores';
 import WalletVisualization from '../../components/WalletVisualization';
 
 const ProductDetail: React.FC = ({ route, navigation }) => {
   const { product } = route.params as { product: Product };
   const { addProduct } = useShoppingCartStore();
+  const { addEventLog } = useUserEventLogStore();
+  const { user } = useUserStore();
   const { virtualBalance, removeMoney } = useWalletStore();
 
   function addProductToShoppingCart(): void {
     addProduct(product);
+    addEventLog({
+      id: '1',
+      event: 'addProductToShoppingCart',
+      userId: user.id,
+      productId: product.id,
+      timestamp: Date.now(),
+    });
     navigation.navigate('Think', {
       contents: [
         {
@@ -76,8 +91,8 @@ const ProductDetail: React.FC = ({ route, navigation }) => {
       </Header>
       <Image
         style={{
-          width: 400,
-          height: 400,
+          width: 300,
+          height: 300,
         }}
         source={{ uri: product.image }}
       />

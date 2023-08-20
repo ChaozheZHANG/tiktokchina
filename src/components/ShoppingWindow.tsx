@@ -1,7 +1,12 @@
 // ShoppingWindow.tsx
 import React from 'react';
 import { View, Image, Text, Button } from 'react-native';
-import { Product, useShoppingCartStore } from '../stores';
+import {
+  Product,
+  useShoppingCartStore,
+  useUserEventLogStore,
+  useUserStore,
+} from '../stores';
 
 const ShoppingWindow: React.FC<{ product: Product; navigation: any }> = ({
   product,
@@ -13,9 +18,18 @@ const ShoppingWindow: React.FC<{ product: Product; navigation: any }> = ({
   //   image: 'https://example.com/product.jpg',
   // };
   const { addProduct } = useShoppingCartStore();
+  const { user } = useUserStore();
+  const { addEventLog } = useUserEventLogStore();
 
-  const handleBuy = () => {
+  const handleBuy = (): void => {
     console.log('Buy button clicked');
+    addEventLog({
+      id: '1',
+      event: 'buy',
+      userId: user.id,
+      productId: product.id,
+      timestamp: Date.now(),
+    });
     navigation.navigate('ProductDetail', { product });
   };
 

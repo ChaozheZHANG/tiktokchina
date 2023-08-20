@@ -60,3 +60,58 @@ export const useWalletStore = create<WalletStore>(set => ({
       virtualBalance: state.actualBalance,
     })),
 }));
+
+interface EventLog {
+  id: string;
+  event: string;
+  userId: string;
+  productId?: string;
+  timestamp: number;
+}
+
+interface UserEventLogStore {
+  eventLogs: EventLog[];
+  addEventLog: (eventLog: EventLog) => void;
+}
+
+let id = 0;
+export const useUserEventLogStore = create<UserEventLogStore>(set => ({
+  eventLogs: [],
+  addEventLog: eventLog =>
+    set(state => {
+      console.log('add event log', eventLog);
+      
+      id += 1;
+      return {
+        eventLogs: [
+          ...state.eventLogs,
+          {
+            ...eventLog,
+            id: `${id}`,
+            timestamp: Date.now(),
+          },
+        ],
+      };
+    }),
+}));
+
+interface User {
+  id: string;
+  name: string;
+}
+
+interface UserStore {
+  user: User;
+  setUser: (user: User) => void;
+}
+
+export const useUserStore = create<UserStore>(set => ({
+  user: {
+    id: '1',
+    name: 'user 1',
+  },
+  setUser: user =>
+    set(state => ({
+      user,
+    })),
+}));
