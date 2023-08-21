@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { StatusBar, Platform } from 'react-native';
 
 import {
@@ -10,22 +10,24 @@ import { createMaterialBottomTabNavigator } from '@react-navigation/material-bot
 import { createStackNavigator } from '@react-navigation/stack';
 
 import HomeButtom from '../components/HomeButton';
+import CountDown from '../pages/CountDown';
 import Discover from '../pages/Discover';
+import ExternalIntervention from '../pages/ExternalIntervention';
 import Home from '../pages/Home';
 import Inbox from '../pages/Inbox';
 import Me from '../pages/Me';
-import Record from '../pages/Record';
-import Shopping from '../pages/Shopping';
-import Think from '../pages/Think';
-import ShoppingCart from '../pages/ShoppingCart';
-import CountDown from '../pages/CountDown';
 import ProductDetail from '../pages/ProductDetail';
 import Purchase from '../pages/Purchase';
+import Record from '../pages/Record';
+import Shopping from '../pages/Shopping';
+import ShoppingCart from '../pages/ShoppingCart';
+import Think from '../pages/Think';
+import config from '../config';
 
 const Tab = createMaterialBottomTabNavigator();
 const Stack = createStackNavigator();
 
-const AppRoutes: React.FC = () => {
+const AppRoutes: React.FC = ({ navigation }) => {
   const [home, setHome] = useState(true);
 
   StatusBar.setBarStyle('dark-content');
@@ -41,6 +43,13 @@ const AppRoutes: React.FC = () => {
   } else {
     StatusBar.setHidden(false);
   }
+
+  useEffect(() => {
+    console.log('AppRoutes mounted');
+    setTimeout(() => {
+      navigation.navigate('ExternalIntervention');
+    }, config.externalIntervention.time);
+  }, []);
 
   return (
     <Tab.Navigator
@@ -177,6 +186,11 @@ const RootStackScreen: React.FC = () => {
         options={{ headerShown: false }}
         name="Purchase"
         component={Purchase}
+      />
+      <Stack.Screen
+        options={{ headerShown: false }}
+        name="ExternalIntervention"
+        component={ExternalIntervention}
       />
     </Stack.Navigator>
   );

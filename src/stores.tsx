@@ -80,7 +80,7 @@ export const useUserEventLogStore = create<UserEventLogStore>(set => ({
   addEventLog: eventLog =>
     set(state => {
       console.log('add event log', eventLog);
-      
+
       id += 1;
       return {
         eventLogs: [
