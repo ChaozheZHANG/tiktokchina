@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+
 import { View } from 'react-native';
 
 // import ViewPager from '@react-native-community/viewpager';
@@ -7,11 +8,36 @@ import PagerView from 'react-native-pager-view';
 import server from '../../../server.json';
 import Feed from './Feed';
 
+import { useUserEventLogStore, useUserStore } from '../../stores';
 import { Container, Header, Text, Tab, Separator } from './styles';
 
-const Home: React.FC = () => {
+
+const Home: React.FC = ( { navigation } ) => {
   const [tab, setTab] = useState(1);
   const [active, setActive] = useState(0);
+  
+  const { addEventLog } = useUserEventLogStore();
+  const { user } = useUserStore();
+
+  useEffect(() => {
+    console.log('Browse product videos mounted');
+
+    const unsubscribe = navigation.addListener('focus', () => {
+      // Screen was focused
+      // Do something
+      console.log('Browse product videos focused');
+
+      addEventLog({
+        id: '1',
+        event: 'BrowseProductPage',
+        userId: user.id,
+        timestamp: Date.now(),
+      });
+    });
+
+    return unsubscribe;
+  }, [navigation]);
+
   return (
     <Container>
       <Header>

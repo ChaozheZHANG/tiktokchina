@@ -23,14 +23,30 @@ import {
   Bookmark,
 } from './styles';
 import ShoppingWindow from '../../components/ShoppingWindow';
-import { useShoppingCartStore, useWalletStore } from '../../stores';
+import {
+  useShoppingCartStore,
+  useUserEventLogStore,
+  useWalletStore,
+  useUserStore,
+} from '../../stores';
 
 const Purchase: React.FC = ({ navigation }) => {
   const { actualBalance, applyPurchase } = useWalletStore();
-  const { clearCart } = useShoppingCartStore();
+  const { addEventLog } = useUserEventLogStore();
+  const { user } = useUserStore();
+  const { clearCart, products } = useShoppingCartStore();
 
   useEffect(() => {
     applyPurchase();
+    products.forEach(product => {
+      addEventLog({
+        id: '1',
+        event: 'purchase',
+        userId: user.id,
+        productId: product.id,
+        timestamp: Date.now(),
+      });
+    });
     clearCart();
   }, []);
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Button, FlatList, ScrollView, Text, View } from 'react-native';
 
 import { MaterialIcons, AntDesign, FontAwesome } from '@expo/vector-icons';
@@ -24,10 +24,36 @@ import {
 } from './styles';
 import ShoppingWindow from '../../components/ShoppingWindow';
 import ShoppingCartItem from '../../components/ShoppingCartItem';
-import { useShoppingCartStore } from '../../stores';
+import { 
+  useShoppingCartStore, 
+  useUserEventLogStore, 
+  useUserStore, 
+} from '../../stores';
 
 const ShoppingCart: React.FC = ({ navigation }) => {
   const { products } = useShoppingCartStore();
+  const { addEventLog } = useUserEventLogStore();
+  const { user } = useUserStore();
+
+  useEffect(() => {
+    console.log('ShoppingCart mounted');
+
+    const unsubscribe = navigation.addListener('focus', () => {
+      // Screen was focused
+      // Do something
+      console.log('ShoppingCart focused');
+
+      addEventLog({
+        id: '1',
+        event: 'viewShoppingCartPage',
+        userId: user.id,
+        timestamp: Date.now(),
+      });
+    });
+
+    return unsubscribe;
+  }, [navigation]);
+
 
   return (
     <Container>
