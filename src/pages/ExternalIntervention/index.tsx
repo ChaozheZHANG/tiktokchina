@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import { Button, Text } from 'react-native';
 
@@ -11,15 +11,18 @@ import config from '../../config';
 
 const ExternalIntervention: React.FC = ({ navigation }) => {
   const { eventLogs } = useUserEventLogStore();
+  const jumpRef = useRef(true);
 
   useEffect(() => {
     console.log('ExternalIntervention mounted');
 
     const unsubscribe = navigation.addListener('blur', () => {
       // Do something when the screen blurs
-      setTimeout(() => {
-        navigation.navigate('ExternalIntervention');
-      }, config.externalIntervention.time);
+      if (jumpRef.current) {
+        setTimeout(() => {
+          navigation.navigate('ExternalIntervention');
+        }, config.externalIntervention.time);
+      }
     });
 
     return unsubscribe;
@@ -38,15 +41,24 @@ const ExternalIntervention: React.FC = ({ navigation }) => {
         <Title>App Usage</Title>
       </Header>
       {eventLogs.length > 0 ? (
-        <Text>Time used: {timestamp2mmss(Date.now() - eventLogs[0].timestamp)}</Text>
+        <Text>
+          Time used: {timestamp2mmss(Date.now() - eventLogs[0].timestamp)}
+        </Text>
       ) : null}
-      <Text>{JSON.stringify(eventLogs)}</Text>
       <Button
-        title="Back"
+        title="Ignore"
         onPress={() => {
           navigation.goBack();
         }}
       />
+      <Button
+        title="Quit"
+        onPress={() => {
+          jumpRef.current = false;
+          navigation.navigate('End');
+        }}
+      />
+      <Text>{JSON.stringify(eventLogs)}</Text>
     </Container>
   );
 };

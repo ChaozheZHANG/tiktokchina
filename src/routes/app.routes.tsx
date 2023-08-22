@@ -23,6 +23,7 @@ import Shopping from '../pages/Shopping';
 import ShoppingCart from '../pages/ShoppingCart';
 import Think from '../pages/Think';
 import config from '../config';
+import End from '../pages/End';
 
 const Tab = createMaterialBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -191,6 +192,11 @@ const RootStackScreen: React.FC = () => {
         options={{ headerShown: false }}
         name="ExternalIntervention"
         component={ExternalIntervention}
+      />
+      <Stack.Screen
+        options={{ headerShown: false }}
+        name="End"
+        component={End}
       />
     </Stack.Navigator>
   );
