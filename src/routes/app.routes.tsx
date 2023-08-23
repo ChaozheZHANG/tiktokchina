@@ -25,12 +25,16 @@ import Think from '../pages/Think';
 import config from '../config';
 import End from '../pages/End';
 import Feed from '../pages/Home/Feed';
+import StudySetup from '../pages/StudySetup';
+import { useUserStore } from '../stores';
 
 const Tab = createMaterialBottomTabNavigator();
 const Stack = createStackNavigator();
 
-const AppRoutes: React.FC = ({ navigation }) => {
+const AppRoutes: React.FC = ({ route, navigation }) => {
   const [home, setHome] = useState(true);
+  const { user } = useUserStore();
+  // const { condition } = route.params as { condition: string };
 
   StatusBar.setBarStyle('dark-content');
 
@@ -47,10 +51,14 @@ const AppRoutes: React.FC = ({ navigation }) => {
   }
 
   useEffect(() => {
-    console.log('AppRoutes mounted');
-    setTimeout(() => {
-      navigation.navigate('ExternalIntervention');
-    }, config.externalIntervention.time);
+    console.log(
+      `AppRoutes mounted with user ${user.name} and condition ${user.condition}`,
+    );
+    if (user.condition === '1' || user.condition === '3') {
+      setTimeout(() => {
+        navigation.navigate('ExternalIntervention');
+      }, config.externalIntervention.time);
+    }
   }, []);
 
   return (
@@ -137,16 +145,33 @@ const AppRoutes: React.FC = ({ navigation }) => {
           ),
         }}
       /> */}
-      <Tab.Screen
-        name="ShoppingCart"
-        component={ShoppingCart}
-        options={{
-          tabBarLabel: 'Cart',
-          tabBarIcon: ({ color }) => (
-            <AntDesign name="shoppingcart" size={24} color={color} />
-          ),
-        }}
-      />
+      {user.condition === '2' || user.condition === '3' ? (
+        <Tab.Screen
+          name="ShoppingCart"
+          component={ShoppingCart}
+          options={{
+            tabBarLabel: 'Cart',
+            tabBarIcon: ({ color }) => (
+              <AntDesign name="shoppingcart" size={24} color={color} />
+            ),
+          }}
+        />
+      ) : (
+        <Tab.Screen
+          name="Inbox"
+          component={Inbox}
+          options={{
+            tabBarLabel: 'Inbox',
+            tabBarIcon: ({ color }) => (
+              <MaterialCommunityIcons
+                name="message-text-outline"
+                size={24}
+                color={color}
+              />
+            ),
+          }}
+        />
+      )}
     </Tab.Navigator>
   );
 };
@@ -154,6 +179,11 @@ const AppRoutes: React.FC = ({ navigation }) => {
 const RootStackScreen: React.FC = () => {
   return (
     <Stack.Navigator mode="modal">
+      <Stack.Screen
+        name="StudySetup"
+        component={StudySetup}
+        options={{ headerShown: false }}
+      />
       <Stack.Screen
         name="Main"
         component={AppRoutes}

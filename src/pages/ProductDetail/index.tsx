@@ -58,7 +58,6 @@ const ProductDetail: React.FC = ({ route, navigation }) => {
           ),
           next: 'Think',
         },
-
         {
           title: 'Think twice',
           content: <Text>Think about the product</Text>,

@@ -67,6 +67,7 @@ interface EventLog {
   userId: string;
   productId?: string;
   timestamp: number;
+  condition?: string;
 }
 
 interface UserEventLogStore {
@@ -95,6 +96,7 @@ export const useUserEventLogStore = create<UserEventLogStore>(set => ({
 interface User {
   id: string;
   name: string;
+  condition: string;
 }
 
 interface UserStore {
@@ -106,6 +108,7 @@ export const useUserStore = create<UserStore>(set => ({
   user: {
     id: '1',
     name: 'user 1',
+    condition: '1',
   },
   setUser: user =>
     set(state => ({

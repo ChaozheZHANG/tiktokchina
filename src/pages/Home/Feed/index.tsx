@@ -34,6 +34,7 @@ import {
   useShoppingCartStore,
   useUserEventLogStore,
   useUserStore,
+  useWalletStore,
 } from '../../../stores';
 
 const styles = StyleSheet.create({
@@ -116,7 +117,8 @@ const Feed: React.FC<Props> = ({ play, product, item, navigation }) => {
 
   const { user } = useUserStore();
   const { addEventLog } = useUserEventLogStore();
-  const { products } = useShoppingCartStore();
+  const { products, addProduct } = useShoppingCartStore();
+  const { removeMoney } = useWalletStore();
 
   const [modalVisible, setModalVisible] = useState(false);
 
@@ -132,7 +134,13 @@ const Feed: React.FC<Props> = ({ play, product, item, navigation }) => {
         productId: `${product.id}`,
         timestamp: Date.now(),
       });
-      navigation.navigate('ProductDetail', { product });
+      if (user.condition === '2' || user.condition === '3') {
+        navigation.navigate('ProductDetail', { product });
+      } else {
+        addProduct(product);
+        removeMoney(product.price);
+        navigation.navigate('Purchase');
+      }
     }
   };
 
@@ -187,6 +195,7 @@ const Feed: React.FC<Props> = ({ play, product, item, navigation }) => {
       <Details>
         <User>{item.username}</User>
         <Tags>{item.tags}</Tags>
+        <Tags>${product.price}</Tags>
         <MusicBox>
           <FontAwesome name="music" size={15} color="#f5f5f5" />
           <Music>{item.music}</Music>

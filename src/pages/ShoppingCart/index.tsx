@@ -24,10 +24,10 @@ import {
 } from './styles';
 import ShoppingWindow from '../../components/ShoppingWindow';
 import ShoppingCartItem from '../../components/ShoppingCartItem';
-import { 
-  useShoppingCartStore, 
-  useUserEventLogStore, 
-  useUserStore, 
+import {
+  useShoppingCartStore,
+  useUserEventLogStore,
+  useUserStore,
 } from '../../stores';
 
 const ShoppingCart: React.FC = ({ navigation }) => {
@@ -53,7 +53,6 @@ const ShoppingCart: React.FC = ({ navigation }) => {
 
     return unsubscribe;
   }, [navigation]);
-
 
   return (
     <Container>
