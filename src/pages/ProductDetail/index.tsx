@@ -58,7 +58,7 @@ const ProductDetail: React.FC = ({ route, navigation }) => {
           ),
           next: 'Think',
         },
-        
+
         {
           title: 'Think twice',
           content: <Text>Think about the product</Text>,
@@ -92,8 +92,8 @@ const ProductDetail: React.FC = ({ route, navigation }) => {
       </Header>
       <Image
         style={{
-          width: 300,
-          height: 300,
+          width: 200,
+          height: 200,
         }}
         source={{ uri: product.image }}
       />
@@ -104,6 +104,7 @@ const ProductDetail: React.FC = ({ route, navigation }) => {
       </Text>
       <WalletVisualization />
       <Button title="Add to Shopping Cart" onPress={addProductToShoppingCart} />
+      <Button title="Back" onPress={() => navigation.goBack()} />
     </Container>
   );
 };

@@ -1,5 +1,15 @@
-import React from 'react';
-import { Image, Animated, Easing } from 'react-native';
+import React, { useState } from 'react';
+import {
+  Image,
+  Animated,
+  Easing,
+  Modal,
+  View,
+  Text,
+  Pressable,
+  Alert,
+  StyleSheet,
+} from 'react-native';
 
 import { FontAwesome, AntDesign } from '@expo/vector-icons';
 import { Video } from 'expo-av';
@@ -19,6 +29,56 @@ import {
   BoxAction,
   TextAction,
 } from './styles';
+import {
+  Product,
+  useShoppingCartStore,
+  useUserEventLogStore,
+  useUserStore,
+} from '../../../stores';
+
+const styles = StyleSheet.create({
+  centeredView: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 22,
+  },
+  modalView: {
+    margin: 20,
+    backgroundColor: 'white',
+    borderRadius: 20,
+    padding: 35,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+  button: {
+    borderRadius: 20,
+    padding: 10,
+    elevation: 2,
+  },
+  buttonOpen: {
+    backgroundColor: '#F194FF',
+  },
+  buttonClose: {
+    backgroundColor: '#2196F3',
+  },
+  textStyle: {
+    color: 'white',
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+  modalText: {
+    marginBottom: 15,
+    textAlign: 'center',
+  },
+});
 
 interface Item {
   id: number;
@@ -32,10 +92,12 @@ interface Item {
 
 interface Props {
   play: boolean;
+  product: Product;
   item: Item;
+  navigation: any;
 }
 
-const Feed: React.FC<Props> = ({ play, item }) => {
+const Feed: React.FC<Props> = ({ play, product, item, navigation }) => {
   const spinValue = new Animated.Value(0);
 
   Animated.loop(
@@ -51,6 +113,28 @@ const Feed: React.FC<Props> = ({ play, item }) => {
     inputRange: [0, 1],
     outputRange: ['0deg', '360deg'],
   });
+
+  const { user } = useUserStore();
+  const { addEventLog } = useUserEventLogStore();
+  const { products } = useShoppingCartStore();
+
+  const [modalVisible, setModalVisible] = useState(false);
+
+  const handleBuy = (): void => {
+    console.log('Buy button clicked');
+    if (products.includes(product)) {
+      setModalVisible(!modalVisible);
+    } else {
+      addEventLog({
+        id: '1',
+        event: 'buy',
+        userId: user.id,
+        productId: `${product.id}`,
+        timestamp: Date.now(),
+      });
+      navigation.navigate('ProductDetail', { product });
+    }
+  };
 
   return (
     <>
@@ -78,6 +162,27 @@ const Feed: React.FC<Props> = ({ play, item }) => {
             height: '100%',
           }}
         />
+        <Modal
+          animationType="slide"
+          transparent={true}
+          visible={modalVisible}
+          onRequestClose={() => {
+            Alert.alert('Modal has been closed.');
+            setModalVisible(!modalVisible);
+          }}
+        >
+          <View style={styles.centeredView}>
+            <View style={styles.modalView}>
+              <Text style={styles.modalText}>Already in Shopping Cart</Text>
+              <Pressable
+                style={[styles.button, styles.buttonClose]}
+                onPress={() => setModalVisible(!modalVisible)}
+              >
+                <Text style={styles.textStyle}>Back</Text>
+              </Pressable>
+            </View>
+          </View>
+        </Modal>
       </Container>
       <Details>
         <User>{item.username}</User>
@@ -88,7 +193,12 @@ const Feed: React.FC<Props> = ({ play, item }) => {
         </MusicBox>
       </Details>
       <Actions>
-        <BoxAction>
+        <BoxAction
+          onPress={() => {
+            console.log('shop');
+            handleBuy();
+          }}
+        >
           <FontAwesome
             style={{ alignSelf: 'center' }}
             name="shopping-cart"
@@ -124,7 +234,8 @@ const Feed: React.FC<Props> = ({ play, item }) => {
                 borderRadius: 25,
               }}
               source={{
-                uri: 'https://img1.baidu.com/it/u=2787072759,2468608291&fm=253&fmt=auto&app=138&f=JPEG?w=667&h=500',
+                uri:
+                  'https://img1.baidu.com/it/u=2787072759,2468608291&fm=253&fmt=auto&app=138&f=JPEG?w=667&h=500',
               }}
             />
           </Animated.View>

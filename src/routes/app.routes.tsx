@@ -24,6 +24,7 @@ import ShoppingCart from '../pages/ShoppingCart';
 import Think from '../pages/Think';
 import config from '../config';
 import End from '../pages/End';
+import Feed from '../pages/Home/Feed';
 
 const Tab = createMaterialBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -85,7 +86,7 @@ const AppRoutes: React.FC = ({ navigation }) => {
           ),
         }}
       />
-      <Tab.Screen
+      {/* <Tab.Screen
         name="Inbox"
         component={Inbox}
         options={{
@@ -98,7 +99,7 @@ const AppRoutes: React.FC = ({ navigation }) => {
             />
           ),
         }}
-      />
+      /> */}
       <Tab.Screen
         name="Live"
         component={Record}
@@ -126,7 +127,7 @@ const AppRoutes: React.FC = ({ navigation }) => {
           ),
         }}
       />
-      <Tab.Screen
+      {/* <Tab.Screen
         name="Shopping"
         component={Shopping}
         options={{
@@ -135,7 +136,7 @@ const AppRoutes: React.FC = ({ navigation }) => {
             <MaterialCommunityIcons name="shopping" size={24} color={color} />
           ),
         }}
-      />
+      /> */}
       <Tab.Screen
         name="ShoppingCart"
         component={ShoppingCart}

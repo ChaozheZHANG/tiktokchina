@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 
 export interface Product {
-  id: string;
+  id: number;
   name: string;
   price: number;
   description?: string;
@@ -79,18 +79,15 @@ export const useUserEventLogStore = create<UserEventLogStore>(set => ({
   eventLogs: [],
   addEventLog: eventLog =>
     set(state => {
-      console.log('add event log', eventLog);
-
       id += 1;
+      const updatedLog = {
+        ...eventLog,
+        id: `${id}`,
+        timestamp: Date.now(),
+      };
+      console.log('add event log', updatedLog);
       return {
-        eventLogs: [
-          ...state.eventLogs,
-          {
-            ...eventLog,
-            id: `${id}`,
-            timestamp: Date.now(),
-          },
-        ],
+        eventLogs: [...state.eventLogs, updatedLog],
       };
     }),
 }));

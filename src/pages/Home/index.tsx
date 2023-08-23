@@ -6,16 +6,16 @@ import { View } from 'react-native';
 import PagerView from 'react-native-pager-view';
 
 import server from '../../../server.json';
+import prodocts from '../../../server-products.json';
 import Feed from './Feed';
 
 import { useUserEventLogStore, useUserStore } from '../../stores';
 import { Container, Header, Text, Tab, Separator } from './styles';
 
-
-const Home: React.FC = ( { navigation } ) => {
+const Home: React.FC = ({ navigation }) => {
   const [tab, setTab] = useState(1);
   const [active, setActive] = useState(0);
-  
+
   const { addEventLog } = useUserEventLogStore();
   const { user } = useUserStore();
 
@@ -57,9 +57,14 @@ const Home: React.FC = ( { navigation } ) => {
         style={{ flex: 1 }}
         initialPage={0}
       >
-        {server.feed.map(item => (
+        {server.feed.map((item, i) => (
           <View key={item.id}>
-            <Feed item={item} play={Number(item.id) === active} />
+            <Feed
+              item={item}
+              product={prodocts[i]}
+              play={Number(item.id) === active}
+              navigation={navigation}
+            />
           </View>
         ))}
       </PagerView>
@@ -68,5 +73,3 @@ const Home: React.FC = ( { navigation } ) => {
 };
 
 export default Home;
-
-
