@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { FlatList, ScrollView, Text, View, Button } from 'react-native';
 
 import { MaterialIcons, AntDesign, FontAwesome } from '@expo/vector-icons';
-
+import { useUserEventLogStore, useUserStore } from '../../stores';
 import avatar from '../../assets/avatar.png';
 
 import {
@@ -34,6 +34,29 @@ const Think: React.FC<{
   route: any;
   navigation: any;
 }> = ({ route, navigation }) => {
+
+  const { addEventLog } = useUserEventLogStore();
+  const { user } = useUserStore();
+
+  useEffect(() => {
+    console.log('Think mounted');
+
+    const unsubscribe = navigation.addListener('focus', () => {
+      // Screen was focused
+      // Do something
+      console.log('Think focused');
+
+      addEventLog({
+        id: '1',
+        event: 'viewThinkPage',
+        userId: user.id,
+        timestamp: Date.now(),
+      });
+    });
+
+    return unsubscribe;
+  }, [navigation]);
+
   const {
     contents,
     currentLevel,

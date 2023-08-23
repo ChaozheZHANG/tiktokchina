@@ -1,8 +1,8 @@
 export default {
   externalIntervention: {
-    time: 10000,
+    time: 300000,
   },
   countDown: {
-    time: 5,
+    time: 20,
   },
 };

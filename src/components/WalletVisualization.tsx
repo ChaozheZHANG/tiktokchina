@@ -9,7 +9,7 @@ const WalletVisualization: React.FC = ({ balance }: { balance?: number }) => {
 
   function DrawMoney(): JSX.Element[] {
     const images: JSX.Element[] = [];
-    for (let i = 0; i < balanceUsed / 100; i += 1) {
+    for (let i = 0; i < balanceUsed / 50; i += 1) {
       images.push(
         <Image
           key={i}
@@ -19,7 +19,7 @@ const WalletVisualization: React.FC = ({ balance }: { balance?: number }) => {
           }}
           source={{
             uri:
-              'https://outin-4c183069335e11eeb6c100163e024c6a.oss-cn-shanghai.aliyuncs.com/image/default/3646A8CF15D6497AA6829A6FC2626AC3-6-2.png?Expires=1691363607&OSSAccessKeyId=LTAIxSaOfEzCnBOj&Signature=3GRuvXD%2Fg0cSXw6rf5Lqb3dj2Qs%3D',
+              'https://outin-8ae065dd40a411ee964800163e12ac16.oss-cn-shenzhen.aliyuncs.com/image/default/0FC95E3B0F974631BEAD3DB3929E4820-6-2.jpeg?Expires=1692707373&OSSAccessKeyId=LTAI5tGo8c8H9HqS5BEfcU3U&Signature=PkScxc%2BfqpR%2Bgtt5CDon3fyKFbM%3D',
           }}
         />,
       );
