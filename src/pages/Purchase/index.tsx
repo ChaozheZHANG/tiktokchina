@@ -43,7 +43,7 @@ const Purchase: React.FC = ({ navigation }) => {
         id: '1',
         event: 'purchase',
         userId: user.id,
-        productId: product.id,
+        productId: `${product.id}`,
         timestamp: Date.now(),
       });
     });

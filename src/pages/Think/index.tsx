@@ -34,7 +34,6 @@ const Think: React.FC<{
   route: any;
   navigation: any;
 }> = ({ route, navigation }) => {
-
   const { addEventLog } = useUserEventLogStore();
   const { user } = useUserStore();
 
@@ -84,6 +83,12 @@ const Think: React.FC<{
         <Button
           title="Back"
           onPress={() => {
+            addEventLog({
+              id: '1',
+              event: 'viewThinkPageBack',
+              userId: user.id,
+              timestamp: Date.now(),
+            });
             navigation.goBack();
           }}
         />
@@ -91,7 +96,13 @@ const Think: React.FC<{
           title="Continue"
           onPress={() => {
             if (contents[currentLevel].callback)
-              contents[currentLevel].callback!();
+              contents[currentLevel].callback();
+            addEventLog({
+              id: '1',
+              event: 'viewThinkPageContinue',
+              userId: user.id,
+              timestamp: Date.now(),
+            });
             navigation.navigate(contents[currentLevel].next, {
               contents: contents,
               currentLevel: currentLevel + 1,

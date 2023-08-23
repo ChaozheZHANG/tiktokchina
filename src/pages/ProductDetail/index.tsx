@@ -46,7 +46,7 @@ const ProductDetail: React.FC = ({ route, navigation }) => {
       id: '1',
       event: 'addProductToShoppingCart',
       userId: user.id,
-      productId: product.id,
+      productId: `${product.id}`,
       timestamp: Date.now(),
     });
     navigation.navigate('Think', {

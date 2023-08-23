@@ -27,7 +27,7 @@ const ShoppingWindow: React.FC<{ product: Product; navigation: any }> = ({
       id: '1',
       event: 'buy',
       userId: user.id,
-      productId: product.id,
+      productId: `${product.id}`,
       timestamp: Date.now(),
     });
     navigation.navigate('ProductDetail', { product });
