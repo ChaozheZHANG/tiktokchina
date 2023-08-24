@@ -24,7 +24,7 @@ import {
 } from './styles';
 import { useWalletStore } from '../../stores';
 
-const Me: React.FC = () => {
+const Me: React.FC = ({ navigation }) => {
   const { actualBalance } = useWalletStore();
 
   return (
@@ -71,13 +71,16 @@ const Me: React.FC = () => {
             </StatsColumn>
           </Stats>
           <ProfileColumn>
-            <ProfileEdit>
+            {/* <ProfileEdit>
               <ProfileText>Edit profile</ProfileText>
             </ProfileEdit>
-            <Bookmark name="bookmark" size={24} color="black" />
+            <Bookmark name="bookmark" size={24} color="black" /> */}
+            <ProfileEdit onPress={() => navigation.navigate('End')}>
+              <ProfileText>End Study</ProfileText>
+            </ProfileEdit>
           </ProfileColumn>
 
-          <StatsText>Tap to add bio</StatsText>
+          <StatsText>Tap to end the study and download user logs</StatsText>
         </Content>
       </ScrollView>
     </Container>
