@@ -1,75 +1,21 @@
-<h1 align="center">
-<img alt="tiktokclone" title="tiktokclone" src="https://res.cloudinary.com/matheuscastroweb/image/upload/v1588992052/tiktok-clone/tiktok_x9nihm.png" width="100px" />
-    <br>
-    TikTok Clone
-</h1>
+# CHI 24 Submission
 
-<h4 align="center">
-Contact me at matheuscastroweb@gmail.com to about more.
-</h4>
+## Description
+This repository contains the submission for the CHI 24, including the source code of the prototype, the dataset of the user study, and the analysis code.
 
-<h4 align="center">
-Clone of the TikTok app layout. 
-</h4>
+## Abstract
+Impulsive purchasing tendencies exist on Douyin, the most popular Chinese social media platform, primarily due to the users’ exposure
+to live sales events. This study delved into examining impulsive purchasing behaviour, specifically triggered by external stimuli,
+through the lens of the Stimulus-Organism-Response framework model. Thus, our study implemented a tailored Douyin client, namely
+Douyin X, that contains four interventions: Visualizing the wallet’s balances, enhancing payment friction, Prolonging the duration
+of purchase decision-making, and imposing browsing time limits and usage statistics. Our user study with 20 participants implies
+individuals’ impulsive buying due to external stimuli, combined with the proliferation of impulse purchase-promoting designs, which
+has led to the excessive prevalence of impulse buying in live e-commerce. Our research offers a comprehensive framework that can
+effectively mitigate the likelihood of impulsive purchasing behaviours, specifically from a design-oriented standpoint
 
-<p align="center">
-
-  <img alt="shields.io" src="https://img.shields.io/github/repo-size/matheuscastroweb/tiktok-clone" />
-  <img alt="shields.io" src="https://img.shields.io/github/issues/matheuscastroweb/tiktok-clone" />
-   <img alt="shields.io" src="https://img.shields.io/github/license/matheuscastroweb/tiktok-clone" />
-
-</p>
-
-<p align="center">
-  <a href="#technologies">Technologies</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#how-to-use">How To Use</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#license">License</a>
-</p>
-<br>
-<p align="center">
- <img alt="tiktokclonepreview" title="tiktokclonepreview" src="https://res.cloudinary.com/matheuscastroweb/image/upload/v1588994570/tiktok-clone/preview-01_sgeuca.gif" /><br>
-</p>
-<br>
-<p align="center">
-  Under development screens
-</p>
-
-<p align="center">
- <br>
-   <img alt="discover" title="discover" src="https://res.cloudinary.com/matheuscastroweb/image/upload/v1588992052/tiktok-clone/preview-04_nqykq9.png" />
-  <img alt="inbox" title="inbox" src="https://res.cloudinary.com/matheuscastroweb/image/upload/v1588992052/tiktok-clone/preview-02_hlvirt.png"/>
- <img alt="me" title="me" src="https://res.cloudinary.com/matheuscastroweb/image/upload/v1588992052/tiktok-clone/preview-03_hkp6vf.png" />
-</p>
-
-## Technologies
-
-This project was developed with the following technologies:
-
-- [Expo](https://expo.io/)
-- [React-Native](https://facebook.github.io/react-native/)
-- [React Navigation](https://reactnavigation.org/)
-- [styled-components](https://www.styled-components.com/)
-- [expo-av](https://docs.expo.io/versions/latest/sdk/av/)
-- [expo-camera](https://docs.expo.io/versions/latest/sdk/camera/)
-- [@react-native-community/viewpager](https://github.com/react-native-community/react-native-viewpager)
-- [@expo/vector-icons](https://expo.github.io/vector-icons/)
-- [expo-linear-gradient](https://docs.expo.io/versions/latest/sdk/linear-gradient/)
-- [react-native-status-bar-height](https://github.com/ovr/react-native-status-bar-height)
-- [lottie-react-native](https://docs.expo.io/versions/latest/sdk/lottie/)
-- [VS Code][vc] with [EditorConfig][vceditconfig] and [ESLint][vceslint]
-
-## How To Use
-
-To clone and run this application, you'll need [Git](https://git-scm.com), [Node.js v10.16][nodejs] or higher + [Yarn v1.13][yarn] or higher + [Expo CLI][expo] installed on your computer. From your command line:
+## How To Run
 
 ```bash
-# Clone this repository
-$ git clone https://github.com/matheuscastroweb/tiktok-clone
-tiktok-clone
-
-# Go into the repository
-$ cd tiktok-clone
-
 # Install dependencies
 $ yarn install
 
@@ -80,15 +26,8 @@ $ yarn ios
 $ yarn android
 ```
 
-## License
+## Data
+The data is stored in the `data` folder. The source code for the data analysis is `data/compute.R`.
 
-This project is under the MIT license. See the [LICENSE](https://github.com/matheuscastroweb/tiktok-clone/blob/master/LICENSE) for more information.
-
----
-
-[nodejs]: https://nodejs.org/
-[expo]: https://expo.io/tools
-[yarn]: https://yarnpkg.com/
-[vc]: https://code.visualstudio.com/
-[vceditconfig]: https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig
-[vceslint]: https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint
+## Acknowledgement
+This code is based on [tiktok-clone](https://github.com/matheuscastroweb/tiktok-clone).
