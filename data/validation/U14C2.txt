@@ -1,0 +1,1 @@
+[{"id":"1","event":"startStudy","userId":"Liu Erdong","condition":"2","timestamp":1693204480475},{"id":"2","event":"BrowseProductPage","userId":"Liu Erdong","timestamp":1693204480765},{"id":"3","event":"viewShoppingCartPage","userId":"Liu Erdong","timestamp":1693204642875}]

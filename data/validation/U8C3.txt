@@ -1,0 +1,1 @@
+[{"id":"1","event":"startStudy","userId":"Yixuan Xie","condition":"3","timestamp":1692959252146},{"id":"2","event":"BrowseProductPage","userId":"Yixuan Xie","timestamp":1692959252418},{"id":"3","event":"endShopping","userId":"Yixuan Xie","timestamp":1692959340048}]
