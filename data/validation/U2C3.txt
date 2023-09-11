@@ -1,0 +1,1 @@
+[{"id":"1","event":"startStudy","userId":"liangliang3","condition":"3","timestamp":1692943736893},{"id":"2","event":"BrowseProductPage","userId":"liangliang3","timestamp":1692943737150},{"id":"3","event":"endShopping","userId":"liangliang3","timestamp":1692943804707}]
